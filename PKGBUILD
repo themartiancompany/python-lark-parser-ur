@@ -3,7 +3,7 @@
 
 pkgname=python-lark-parser
 pkgver=1.1.7
-pkgrel=1
+pkgrel=2
 pkgdesc='A modern parsing library'
 arch=('any')
 url='https://github.com/lark-parser/lark'
@@ -52,6 +52,9 @@ prepare() {
   git submodule init
   git config submodule.tests/test_nearley/nearley.url "$srcdir/github.com-Hardmath123-nearley"
   git -c protocol.file.allow=always submodule update
+
+  # include *.lark files
+  git cherry-pick --no-commit 656334cb8793fd4e08a12843eaced5a7bb518be3
 }
 
 build() {
